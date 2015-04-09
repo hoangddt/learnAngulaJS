@@ -17,6 +17,9 @@
 
 			var assignTime = function (hour, minute, second) {
 				// console.log("In assignTime: " + hour + " " + minute+" "+second);
+				hour = hour<10 ? "0"+hour : hour;
+				minute = minute<10 ? "0"+minute : minute;
+				second = second<10 ? "0"+second : second;
 				$scope.hour = hour;
 				$scope.min = minute;
 				$scope.sec = second;
