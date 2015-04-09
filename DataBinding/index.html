@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="clock">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple Data Binding - hoangddt</title>
+	<script src="../angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="MyCtrl">
+		<h2>Hello, The time is {{hour + " : " + min + " : "+ sec}}</h2>
+	</div>
+
+	<script>
+		angular.module('clock', [])
+			.controller('MyCtrl', MyCtrl);
+		function MyCtrl($scope) {
+
+			var assignTime = function (hour, minute, second) {
+				// console.log("In assignTime: " + hour + " " + minute+" "+second);
+				$scope.hour = hour;
+				$scope.min = minute;
+				$scope.sec = second;
+			};
+
+			var update = function () {
+				var date = new Date(),
+				hour = date.getHours(),
+				minute = date.getMinutes(),
+				second = date.getSeconds();
+				assignTime(hour, minute, second);
+			};
+
+			update();
+			setInterval(function () {
+				$scope.$apply(update);
+			}, 500);
+
+
+		};
+	</script>
+	
+</body>
+</html>
